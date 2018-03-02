@@ -1,0 +1,27 @@
+{
+  "name": "socketchat",
+  "version": "1.0.0",
+  "description": "A chat application using socket.io & mongodb\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenrikKal/SocketChat.git"
+  },
+  "keywords": [
+    "socket.io",
+    "mongo.db"
+  ],
+  "author": "Henrik Kälvegren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HenrikKal/SocketChat/issues"
+  },
+  "homepage": "https://github.com/HenrikKal/SocketChat#readme",
+  "dependencies": {
+    "mongodb": "^3.0.3",
+    "socket.io": "^2.0.4"
+  }
+}
