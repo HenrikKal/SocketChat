@@ -1,7 +1,7 @@
 # A simple chat application
 
 ## Learning Sources
-### Traversy Media:
+**Traversy Media:**
 1. https://youtu.be/8Y6mWhcdSUM
 2. https://youtu.be/hrRue5Rt6Is
 
@@ -14,3 +14,8 @@
 
 ## Node Server
 1.  run: npm start
+
+
+## References
+**socket.io:** https://github.com/socketio/socket.io/ <br/>
+**MongoDB:** https://github.com/mongodb/node-mongodb-native
