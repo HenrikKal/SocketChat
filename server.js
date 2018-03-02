@@ -4,15 +4,68 @@ const assert = require('assert');
 
 
 // Connection URL
-const url = 'mongodb://127.0.0.1/mongo';
+const url = 'mongodb://localhost/mongo';
 
 const dbName = 'SocketChat';
 
 // Connect to mongodb
-mongo.connect(url, function(err, client){
+mongo.connect(url, function(err, db){
   assert.equal(null, err);
 
   console.log('MongDB connected...');
+
+  // Connect to Socket.io
+  client.on('connection', function(socket){
+      // Create a collection called 'chats' in mongodb
+      let chat = db.collection('chats');
+
+      // Create function to send status to client from Server
+      sendStatus = function(s){
+        socket.emit('status', s); // pass from server to client
+      }
+
+      // Get chats from mongo collection
+      chat.find().limit(100).sort({_id:1}).toArray(function(err, res){
+        assert.equal(null, err);
+        // Emit the messages
+        socket.emit('output', res);
+
+
+      });
+
+  // Handle input events
+  socket.on('input', function(data){
+    let name = data.name;
+    let message = data.message;
+
+    // Check for name and message
+    if (name == '' || message == ''){
+      // Send error sendStatus
+      sendStatus('Please enter a nanme and message');
+    } else {
+      //Insert messages
+      chat.insert({name: name, message: message}, function(){
+        client.emit('output', [data]);
+
+        // Send status object
+        sendStatus({
+          message: 'Message sent',
+          clear: true
+        });
+      });
+    }
+  });
+
+  // Handle clera
+  socket.on('clear', function(){
+    // Remove all chats from collection
+    chat.remove({}, function(){
+      // Emit cleared
+      socket.emit('cleared');
+    });
+  });
+
+});
 
 
 

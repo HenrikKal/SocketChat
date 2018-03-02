@@ -10,7 +10,7 @@
 ## Database Setup
 1. install mongoDB: https://www.mongodb.com/
 2. open a terminal as administrator
-3. run: \\bin\\mongo to start Database
+3. run: \\bin\\mongo to start database
 
 ## Node Server
 1.  run: npm start
